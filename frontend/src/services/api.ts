@@ -10,7 +10,7 @@ import {
 } from '../types';
 
 const apiClient = axios.create({
-  baseURL: '', // Uses Vite proxy in development
+  baseURL: import.meta.env.VITE_API_BASE_URL || '', // Uses Vite proxy (http://127.0.0.1:8000) by default
   timeout: 300000, // 5 min timeout for video operations
 });
 
@@ -23,6 +23,15 @@ export interface AnalysisConfigOptions {
   countingLines?: CountingLineDefinition[];
   restrictedZones?: number[][];
 }
+
+export const getMediaUrl = (url?: string | null): string => {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('blob:') || url.startsWith('data:')) {
+    return url;
+  }
+  const baseUrl = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/+$/, '');
+  return `${baseUrl}${url.startsWith('/') ? '' : '/'}${url}`;
+};
 
 export const api = {
   getHealth: async (): Promise<HealthResponse> => {

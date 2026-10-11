@@ -9,7 +9,7 @@ import {
   ArrowRight,
   RefreshCw,
 } from 'lucide-react';
-import { api } from '../services/api';
+import { api, getMediaUrl } from '../services/api';
 import { AnalysisRecordSummary } from '../types';
 
 interface HistoryPageProps {
@@ -167,7 +167,7 @@ export const HistoryPage: React.FC<HistoryPageProps> = ({ onSelectAnalysis }) =>
                       <div className="flex items-center justify-end space-x-2">
                         {item.report_pdf_url && (
                           <a
-                            href={item.report_pdf_url}
+                            href={getMediaUrl(item.report_pdf_url)}
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}

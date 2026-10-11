@@ -16,6 +16,7 @@ import { VehicleCountsChart } from '../components/VehicleCountsChart';
 import { CongestionGauge } from '../components/CongestionGauge';
 import { TimeSeriesChart } from '../components/TimeSeriesChart';
 import { EvidenceModal } from '../components/EvidenceModal';
+import { getMediaUrl } from '../services/api';
 import { ImageAnalysisResponse, VideoJobResult, TrafficEvent, CountingLineResult } from '../types';
 
 interface AnalysisDetailsPageProps {
@@ -61,7 +62,7 @@ export const AnalysisDetailsPage: React.FC<AnalysisDetailsPageProps> = ({ data, 
         {/* Download Buttons */}
         <div className="flex items-center space-x-2">
           <a
-            href={data.report_pdf_url}
+            href={getMediaUrl(data.report_pdf_url)}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-750 text-white text-xs font-semibold border border-slate-700 transition-colors shadow-sm"
@@ -70,7 +71,7 @@ export const AnalysisDetailsPage: React.FC<AnalysisDetailsPageProps> = ({ data, 
             <span>Download PDF</span>
           </a>
           <a
-            href={data.report_csv_url}
+            href={getMediaUrl(data.report_csv_url)}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-750 text-white text-xs font-semibold border border-slate-700 transition-colors shadow-sm"
@@ -144,13 +145,13 @@ export const AnalysisDetailsPage: React.FC<AnalysisDetailsPageProps> = ({ data, 
           <div className="bg-black rounded-xl overflow-hidden border border-slate-800 flex items-center justify-center min-h-[360px]">
             {isVideo ? (
               <video
-                src={viewMode === 'annotated' ? data.annotated_media_url : data.original_media_url}
+                src={getMediaUrl(viewMode === 'annotated' ? data.annotated_media_url : data.original_media_url)}
                 controls
                 className="w-full max-h-[480px] object-contain"
               />
             ) : (
               <img
-                src={viewMode === 'annotated' ? data.annotated_media_url : data.original_media_url}
+                src={getMediaUrl(viewMode === 'annotated' ? data.annotated_media_url : data.original_media_url)}
                 alt="Analyzed Traffic Frame"
                 className="w-full max-h-[480px] object-contain"
               />

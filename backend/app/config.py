@@ -7,6 +7,18 @@ APP_DIR = Path(__file__).resolve().parent
 BACKEND_DIR = APP_DIR.parent
 PROJECT_ROOT = BACKEND_DIR.parent
 
+# Load environment variables from .env file if available
+try:
+    from dotenv import load_dotenv
+    if (BACKEND_DIR / ".env").exists():
+        load_dotenv(BACKEND_DIR / ".env")
+    elif (PROJECT_ROOT / ".env").exists():
+        load_dotenv(PROJECT_ROOT / ".env")
+    else:
+        load_dotenv()
+except ImportError:
+    pass
+
 STORAGE_DIR = Path(os.getenv("STORAGE_DIR", str(BACKEND_DIR / "storage")))
 UPLOADS_DIR = STORAGE_DIR / "uploads"
 PROCESSED_DIR = STORAGE_DIR / "processed"

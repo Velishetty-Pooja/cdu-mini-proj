@@ -1,0 +1,20 @@
+services:
+  # FastAPI Computer Vision Backend
+  - type: web
+    name: indian-traffic-backend
+    runtime: docker
+    dockerfilePath: backend/Dockerfile
+    dockerContext: backend
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: DEVICE
+        value: cpu
+      - key: DEFAULT_CONFIDENCE
+        value: "0.25"
+      - key: DEFAULT_SAMPLE_STRIDE
+        value: "2"
+      - key: MAX_IMAGE_SIZE_MB
+        value: "25"
+      - key: MAX_VIDEO_SIZE_MB
+        value: "100"

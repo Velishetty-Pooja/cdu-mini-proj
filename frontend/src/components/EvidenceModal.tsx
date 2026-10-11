@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, AlertTriangle, Clock, Hash, Tag, FileText } from 'lucide-react';
 import { TrafficEvent } from '../types';
+import { getMediaUrl } from '../services/api';
 
 interface EvidenceModalProps {
   event: TrafficEvent | null;
@@ -40,7 +41,7 @@ export const EvidenceModal: React.FC<EvidenceModalProps> = ({ event, onClose }) 
           {event.evidence_url ? (
             <div className="rounded-xl overflow-hidden border border-slate-800 bg-black flex items-center justify-center">
               <img
-                src={event.evidence_url}
+                src={getMediaUrl(event.evidence_url)}
                 alt={`Evidence crop for ${event.id}`}
                 className="max-h-64 object-contain"
               />
