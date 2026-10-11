@@ -1,0 +1,28 @@
+# Python & Virtual Environments
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Node & Frontend
+node_modules/
+dist/
+.DS_Store
+
+# Storage media uploads & runs (keep directories, ignore runtime files)
+backend/storage/uploads/*
+!backend/storage/uploads/.gitkeep
+backend/storage/processed/*
+!backend/storage/processed/.gitkeep
+backend/storage/evidence/*
+!backend/storage/evidence/.gitkeep
+backend/storage/reports/*
+!backend/storage/reports/.gitkeep
+
+# Model weights
+*.pt
+!yolov8n.pt
+
+# Local Environment
+.env
